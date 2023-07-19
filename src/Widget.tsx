@@ -19,7 +19,7 @@ function Widget() {
   };
 
   return (
-    <>
+    <div className="gradient-bg text-white">
       <button
         onClick={() => {
           void fetchData();
@@ -29,7 +29,7 @@ function Widget() {
       </button>
       {loading && <div>Loading...</div>}
       {data && !loading && <div>{JSON.stringify(data, null, 2)}</div>}
-    </>
+    </div>
   );
 }
 
