@@ -2,7 +2,11 @@ import SearchIcon from "./icons/SearchIcon";
 import { useState } from "react";
 import { City } from "./types";
 
-function SearchMenu() {
+interface ISearchMenuProps {
+  setPickedCity: (arg: City) => void;
+}
+
+function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   const [isOpened, setIsOpened] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
   async function fetchCities(cityQuery: string) {
@@ -37,7 +41,10 @@ function SearchMenu() {
           />
           <div className="bg-slate-700 overflow-hidden flex flex-col ">
             {cities.map((city) => (
-              <button className="text-start py-1 hover:bg-slate-500 px-2">
+              <button
+                onClick={() => setPickedCity(city)}
+                className="text-start py-1 hover:bg-slate-500 px-2"
+              >
                 {city.city}, {city.country}
               </button>
             ))}
