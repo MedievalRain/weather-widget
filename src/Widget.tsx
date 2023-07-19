@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchIcon from "./icons/SearchIcon";
+import SearchButton from "./SearchButton";
 
 function Widget() {
   const [data, setData] = useState();
@@ -22,10 +22,7 @@ function Widget() {
   return (
     <div className="gradient-bg text-white max-w-md w-full rounded-md h-96">
       <div className="h-full w-full backdrop-blur-3xl flex flex-col items-start p-2">
-        <button className="place-self-end bg-slate-900 rounded-full p-3 fill-white">
-          <SearchIcon />
-        </button>
-
+        <SearchButton />
         {/* <button
           onClick={() => {
             void fetchData();
