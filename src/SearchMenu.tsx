@@ -26,18 +26,18 @@ function SearchMenu() {
         <SearchIcon />
       </button>
       {isOpened ? (
-        <div className="absolute right-14 top-2">
+        <div className="absolute right-14 top-2 bg-slate-700 rounded-md overflow-hidden">
           <input
-            className="bg-slate-700 p-2 rounded-t-md outline-slate-900 outline-1"
+            className="bg-slate-700 p-1 outline-slate-900 outline-1 w-full"
             type="text"
             placeholder="City..."
             onChange={(event) => {
               fetchCities(event.target.value).catch(console.error);
             }}
           />
-          <div className="bg-slate-700 rounded-b-md overflow-hidden flex flex-col ">
+          <div className="bg-slate-700 overflow-hidden flex flex-col ">
             {cities.map((city) => (
-              <button className="text-start py-1 hover:bg-slate-400 px-2">
+              <button className="text-start py-1 hover:bg-slate-500 px-2">
                 {city.city}, {city.country}
               </button>
             ))}
