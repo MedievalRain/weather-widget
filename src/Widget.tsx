@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchMenu from "./SearchMenu";
 import { City } from "./types";
+import Display from "./Display";
 
 function Widget() {
   const [pickedCity, setPickedCity] = useState<City>({
@@ -13,8 +14,8 @@ function Widget() {
     <div className="gradient-bg text-white max-w-md w-full rounded-md h-96">
       <div className="h-full w-full backdrop-blur-3xl flex flex-col items-start p-2">
         <SearchMenu setPickedCity={setPickedCity} />
+        <Display pickedCity={pickedCity} />
       </div>
-      <div>{pickedCity.city}</div>
     </div>
   );
 }
