@@ -37,11 +37,13 @@ function SearchMenu() {
               fetchCities(event.target.value).catch(console.error);
             }}
           />
-          <ul className="bg-slate-700">
+          <div className="bg-slate-700 rounded-b-md overflow-hidden flex flex-col ">
             {cities.map((city) => (
-              <li className="p-1">{city.city}</li>
+              <button className="text-start py-1 hover:bg-slate-400 px-2">
+                {city.city}, {city.country}
+              </button>
             ))}
-          </ul>
+          </div>
         </div>
       ) : null}
     </>
