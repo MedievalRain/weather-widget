@@ -1,9 +1,10 @@
 import SearchIcon from "./icons/SearchIcon";
 import { useState } from "react";
+import { City } from "./types";
 
 function SearchMenu() {
   const [isOpened, setIsOpened] = useState(false);
-
+  const [cities, setCities] = useState<City[]>([]);
   return (
     <>
       <button
@@ -22,9 +23,9 @@ function SearchMenu() {
             placeholder="City..."
           />
           <ul className="bg-slate-700">
-            <li className="p-1">
-              <button></button>
-            </li>
+            {cities.map((city) => (
+              <li className="p-1">{city.city}</li>
+            ))}
           </ul>
         </div>
       ) : null}
