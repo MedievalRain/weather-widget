@@ -6,14 +6,12 @@ function SearchMenu() {
   const [isOpened, setIsOpened] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
   async function fetchCities(cityQuery: string) {
-    if (true) {
-      const response = await fetch(
-        `https://weather-api-flax-eta.vercel.app/api/search?city=${cityQuery}`
-      );
-      const data: unknown = await response.json();
-      if (response.status === 200 && Array.isArray(data)) {
-        setCities(data);
-      }
+    const response = await fetch(
+      `https://weather-api-flax-eta.vercel.app/api/search?city=${cityQuery}`
+    );
+    const data: unknown = await response.json();
+    if (response.status === 200 && Array.isArray(data)) {
+      setCities(data);
     }
   }
 
