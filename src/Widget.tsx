@@ -19,16 +19,18 @@ function Widget() {
   };
 
   return (
-    <div className="gradient-bg text-white">
-      <button
-        onClick={() => {
-          void fetchData();
-        }}
-      >
-        Fetch Data
-      </button>
-      {loading && <div>Loading...</div>}
-      {data && !loading && <div>{JSON.stringify(data, null, 2)}</div>}
+    <div className="gradient-bg text-white max-w-md w-full rounded-md h-96">
+      <div className="h-full w-full backdrop-blur-3xl">
+        <button
+          onClick={() => {
+            void fetchData();
+          }}
+        >
+          Fetch Data
+        </button>
+        {loading && <div>Loading...</div>}
+        {data && !loading && <div>{JSON.stringify(data, null, 2)}</div>}
+      </div>
     </div>
   );
 }
