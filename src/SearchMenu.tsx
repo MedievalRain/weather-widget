@@ -45,7 +45,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
         document.removeEventListener("keydown", handleEscape);
       };
     }
-  }, [componentRef, isOpened]);
+  }, [isOpened]);
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       fetchCities(inputText).catch(console.error);
