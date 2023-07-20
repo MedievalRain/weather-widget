@@ -6,8 +6,8 @@ import Display from "./Display";
 function Widget() {
   const [pickedCity, setPickedCity] = useState<City>({
     city: "Moscow",
-    latitude: "55.755800",
-    longitude: "37.617800",
+    latitude: 55.755,
+    longitude: 37.6178,
     country: "Russia",
     timezone: "Europe/Moscow",
   });
