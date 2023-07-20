@@ -5,3 +5,9 @@ export type City = {
   country: string;
   timezone: string;
 };
+
+export type WwCode = {
+  code: number;
+  text: string;
+  file: string;
+};
