@@ -28,7 +28,6 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       fetchCities(inputText).catch(console.error);
-      console.log("Fetch");
     }, 200);
     return () => clearTimeout(timeOutId);
   }, [inputText]);
