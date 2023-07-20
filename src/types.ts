@@ -3,4 +3,5 @@ export type City = {
   latitude: string;
   longitude: string;
   country: string;
+  timezone: string;
 };
