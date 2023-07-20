@@ -1,5 +1,5 @@
 import SearchIcon from "./icons/SearchIcon";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { City } from "./types";
 
 interface ISearchMenuProps {
@@ -9,6 +9,7 @@ interface ISearchMenuProps {
 function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   const [isOpened, setIsOpened] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   async function fetchCities(cityQuery: string) {
     const response = await fetch(
       `https://weather-api-flax-eta.vercel.app/api/search?city=${cityQuery}`
@@ -18,6 +19,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
       setCities(data);
     }
   }
+  useEffect(() => inputRef.current?.focus());
 
   return (
     <>
@@ -32,6 +34,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
       {isOpened ? (
         <div className="absolute right-14 top-2 bg-slate-700 rounded-md overflow-hidden">
           <input
+            ref={inputRef}
             className="bg-slate-700 p-1 outline-slate-900 outline-1 w-full"
             type="text"
             placeholder="City..."
