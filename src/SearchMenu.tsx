@@ -42,6 +42,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
           <div className="bg-slate-700 overflow-hidden flex flex-col ">
             {cities.map((city) => (
               <button
+                key={city.city + city.country}
                 onClick={() => setPickedCity(city)}
                 className="text-start py-1 hover:bg-slate-500 px-2"
               >
