@@ -29,3 +29,8 @@ export type WeatherResponse = {
     time: string;
   };
 };
+export type WeatherData = {
+  temperature: number;
+  weathercode: number;
+  src: string;
+};
