@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import LocationIcon from "./icons/LocationIcon";
-import { City, WeatherData } from "./types";
-
+import type { City, WeatherData, WeatherResponse } from "./types";
+import { codes } from "./consts";
+import { getSrc } from "./utils";
 interface IDisplayProps {
   pickedCity: City;
 }
@@ -17,8 +18,21 @@ function Display({ pickedCity }: IDisplayProps) {
       const response = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${pickedCity.latitude}&longitude=${pickedCity.longitude}&current_weather=true&timezone=${pickedCity.timezone}`
       );
-      const json: WeatherData = (await response.json()) as WeatherData;
-      setWeatherData(json);
+      const json: WeatherResponse = (await response.json()) as WeatherResponse;
+      const wwCode = codes.find(
+        (item) => item.code === json.current_weather.weathercode
+      );
+      const temperature = json.current_weather.temperature;
+      const isDay = json.current_weather.is_day;
+      if (wwCode && temperature && isDay) {
+        const src = getSrc(wwCode.file, isDay);
+        const description = wwCode.text;
+        setWeatherData({
+          src: src,
+          temperature: temperature,
+          description: description,
+        });
+      }
     };
     void fetchWeatherData();
   }, [pickedCity]);
