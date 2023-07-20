@@ -43,14 +43,14 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
         <div className="absolute right-14 top-2 bg-slate-700 rounded-md ">
           <input
             ref={inputRef}
-            className="bg-slate-700 p-2 w-full focus:outline-none"
+            className="bg-slate-700 p-2 w-full focus:outline-none rounded-t-md"
             type="text"
             placeholder="City..."
             onChange={(event) => {
               setInputText(event.target.value);
             }}
           />
-          <div className="bg-slate-700 overflow-hidden flex flex-col ">
+          <div className="bg-slate-700 flex flex-col last:rounded-b-md">
             {cities.map((city) => (
               <button
                 key={city.city + city.latitude.toString()}
@@ -58,7 +58,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
                   setPickedCity(city);
                   setIsOpened(false);
                 }}
-                className="text-start py-1 hover:bg-slate-500 px-2"
+                className="text-start py-1 last:rounded-b-md hover:bg-slate-500 px-2 outline-slate-900"
               >
                 {city.city}, {city.country}
               </button>
