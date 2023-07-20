@@ -39,7 +39,11 @@ function Display({ pickedCity }: IDisplayProps) {
 
   return (
     <div className="flex flex-col divide-y w-full px-2 divide-teal-100">
-      <div className="h-72"></div>
+      <div className="flex flex-col items-start px-1 mb-2">
+        <img className="h-32" src={weatherData.src} alt="weather" />
+        <h1 className="text-5xl font-mono">{weatherData.temperature}°C</h1>
+        <p>{weatherData.description}</p>
+      </div>
       <div className="inline-flex items-center gap-1 fill-white px-2">
         <LocationIcon />
         {pickedCity.city}, {pickedCity.country}
