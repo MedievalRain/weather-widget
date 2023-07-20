@@ -21,7 +21,9 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
     }
   }
   useEffect(() => {
-    inputRef.current?.focus();
+    if (isOpened) {
+      inputRef.current?.focus();
+    }
   });
   useEffect(() => {
     const timeOutId = setTimeout(() => {
