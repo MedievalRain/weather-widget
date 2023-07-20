@@ -10,7 +10,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   const [isOpened, setIsOpened] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
   const [inputText, setInputText] = useState("");
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement>(null);
   async function fetchCities(cityQuery: string) {
     const response = await fetch(
