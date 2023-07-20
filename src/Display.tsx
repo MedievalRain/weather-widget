@@ -22,7 +22,7 @@ function Display({ pickedCity }: IDisplayProps) {
       const wwCode = codes.find(
         (item) => item.code === json.current_weather.weathercode
       );
-      const temperature = json.current_weather.temperature;
+      const temperature = Math.floor(json.current_weather.temperature);
       const isDay = json.current_weather.is_day;
       if (wwCode && temperature && isDay) {
         const src = getSrc(wwCode.file, isDay);
