@@ -24,7 +24,7 @@ function Display({ pickedCity }: IDisplayProps) {
       );
       const temperature = Math.floor(json.current_weather.temperature);
       const isDay = json.current_weather.is_day;
-      if (wwCode && temperature && isDay) {
+      if (wwCode && temperature && typeof isDay === "number") {
         const src = getSrc(wwCode.file, isDay);
         const description = wwCode.text;
         setWeatherData({
