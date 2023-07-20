@@ -29,13 +29,19 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
       setIsOpened(false);
     }
   }
+  function handleEscape(event: KeyboardEvent) {
+    if (event.code === "Escape") {
+      setIsOpened(false);
+    }
+  }
   useEffect(() => {
     if (isOpened) {
       inputRef.current?.focus();
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
       return () => {
-        // Unbind the event listener on clean up
         document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener("keydown", handleEscape);
       };
     }
   }, [componentRef, isOpened]);
