@@ -52,18 +52,15 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
     return () => clearTimeout(timeOutId);
   }, [inputText]);
   return (
-    <>
+    <div className="place-self-end" ref={componentRef}>
       <button
         onClick={() => setIsOpened(!isOpened)}
-        className="bg-slate-900 rounded-full p-3 fill-white place-self-end"
+        className="bg-slate-900 rounded-full p-3 fill-white"
       >
         <SearchIcon />
       </button>
       {isOpened ? (
-        <div
-          ref={componentRef}
-          className="absolute right-14 top-2 bg-slate-700 rounded-md "
-        >
+        <div className="absolute right-14 top-2 bg-slate-700 rounded-md ">
           <input
             ref={inputRef}
             className="bg-slate-700 p-2 w-full focus:outline-none rounded-t-md"
@@ -89,7 +86,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
 
