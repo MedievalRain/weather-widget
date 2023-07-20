@@ -34,7 +34,7 @@ function Display({ pickedCity }: IDisplayProps) {
         });
       }
     };
-    void fetchWeatherData();
+    fetchWeatherData().catch(console.error);
   }, [pickedCity]);
 
   return (
