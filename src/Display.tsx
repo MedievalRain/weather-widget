@@ -7,9 +7,11 @@ interface IDisplayProps {
 }
 
 function Display({ pickedCity }: IDisplayProps) {
-  const [weatherData, setWeatherData] = useState<WeatherData | undefined>(
-    undefined
-  );
+  const [weatherData, setWeatherData] = useState<WeatherData>({
+    src: "",
+    temperature: undefined,
+    weathercode: undefined,
+  });
   useEffect(() => {
     const fetchWeatherData = async () => {
       const response = await fetch(
@@ -23,7 +25,7 @@ function Display({ pickedCity }: IDisplayProps) {
 
   return (
     <div className="flex flex-col divide-y w-full px-2 divide-teal-100">
-      <div className="h-72">{weatherData?.current_weather.temperature}</div>
+      <div className="h-72"></div>
       <div className="inline-flex items-center gap-1 fill-white px-2">
         <LocationIcon />
         {pickedCity.city}, {pickedCity.country}
