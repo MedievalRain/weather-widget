@@ -30,7 +30,7 @@ export type WeatherResponse = {
   };
 };
 export type WeatherData = {
-  temperature: number;
-  weathercode: number;
+  temperature: number | undefined;
+  weathercode: number | undefined;
   src: string;
 };
