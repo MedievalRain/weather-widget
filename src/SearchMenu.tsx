@@ -9,6 +9,7 @@ interface ISearchMenuProps {
 function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   const [isOpened, setIsOpened] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
+  const [inputText, setInputText] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
   async function fetchCities(cityQuery: string) {
     const response = await fetch(
@@ -21,15 +22,18 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   }
   useEffect(() => {
     inputRef.current?.focus();
-    console.log("Fetch");
   });
-
+  useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      fetchCities(inputText).catch(console.error);
+      console.log("Fetch");
+    }, 200);
+    return () => clearTimeout(timeOutId);
+  }, [inputText]);
   return (
     <>
       <button
-        onClick={() => {
-          setIsOpened(!isOpened);
-        }}
+        onClick={() => setIsOpened(!isOpened)}
         className="bg-slate-900 rounded-full p-3 fill-white place-self-end"
       >
         <SearchIcon />
@@ -42,14 +46,17 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
             type="text"
             placeholder="City..."
             onChange={(event) => {
-              fetchCities(event.target.value).catch(console.error);
+              setInputText(event.target.value);
             }}
           />
           <div className="bg-slate-700 overflow-hidden flex flex-col ">
             {cities.map((city) => (
               <button
                 key={city.city + city.latitude.toString()}
-                onClick={() => setPickedCity(city)}
+                onClick={() => {
+                  setPickedCity(city);
+                  setIsOpened(false);
+                }}
                 className="text-start py-1 hover:bg-slate-500 px-2"
               >
                 {city.city}, {city.country}
