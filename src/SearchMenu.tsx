@@ -11,6 +11,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   const [cities, setCities] = useState<City[]>([]);
   const [inputText, setInputText] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const componentRef = useRef<HTMLDivElement>(null);
   async function fetchCities(cityQuery: string) {
     const response = await fetch(
       `https://weather-api-flax-eta.vercel.app/api/search?city=${cityQuery}`
@@ -20,11 +21,24 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
       setCities(data);
     }
   }
+  function handleClickOutside(event: MouseEvent) {
+    if (
+      componentRef.current &&
+      !componentRef.current.contains(event.target as Node)
+    ) {
+      setIsOpened(false);
+    }
+  }
   useEffect(() => {
     if (isOpened) {
       inputRef.current?.focus();
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
     }
-  });
+  }, [componentRef, isOpened]);
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       fetchCities(inputText).catch(console.error);
@@ -40,7 +54,10 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
         <SearchIcon />
       </button>
       {isOpened ? (
-        <div className="absolute right-14 top-2 bg-slate-700 rounded-md ">
+        <div
+          ref={componentRef}
+          className="absolute right-14 top-2 bg-slate-700 rounded-md "
+        >
           <input
             ref={inputRef}
             className="bg-slate-700 p-2 w-full focus:outline-none rounded-t-md"
