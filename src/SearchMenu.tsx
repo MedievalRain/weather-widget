@@ -13,6 +13,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement>(null);
   async function fetchCities(cityQuery: string) {
+    cityQuery = cityQuery.charAt(0).toUpperCase() + cityQuery.slice(1);
     const response = await fetch(
       `https://weather-api-flax-eta.vercel.app/api/search?city=${cityQuery}`
     );
