@@ -10,7 +10,7 @@ function Display({ pickedCity }: IDisplayProps) {
   const [weatherData, setWeatherData] = useState<WeatherData>({
     src: "",
     temperature: undefined,
-    weathercode: undefined,
+    description: "",
   });
   useEffect(() => {
     const fetchWeatherData = async () => {
