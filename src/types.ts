@@ -12,7 +12,7 @@ export type WwCode = {
   file: string;
 };
 
-export type WeatherData = {
+export type WeatherResponse = {
   latitude: number;
   longitude: number;
   generationtime_ms: number;
