@@ -9,6 +9,7 @@ function Widget() {
     latitude: "55.755800",
     longitude: "37.617800",
     country: "Russia",
+    timezone: "Europe/Moscow",
   });
   return (
     <div className="gradient-bg text-white max-w-md w-full rounded-md h-96">
