@@ -19,7 +19,10 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
       setCities(data);
     }
   }
-  useEffect(() => inputRef.current?.focus());
+  useEffect(() => {
+    inputRef.current?.focus();
+    console.log("Fetch");
+  });
 
   return (
     <>
@@ -30,10 +33,10 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
         <SearchIcon />
       </button>
       {isOpened ? (
-        <div className="absolute right-14 top-2 bg-slate-700 rounded-md overflow-hidden">
+        <div className="absolute right-14 top-2 bg-slate-700 rounded-md ">
           <input
             ref={inputRef}
-            className="bg-slate-700 p-1 outline-slate-900 outline-1 w-full"
+            className="bg-slate-700 p-2 w-full focus:outline-none"
             type="text"
             placeholder="City..."
             onChange={(event) => {
@@ -43,7 +46,7 @@ function SearchMenu({ setPickedCity }: ISearchMenuProps) {
           <div className="bg-slate-700 overflow-hidden flex flex-col ">
             {cities.map((city) => (
               <button
-                key={city.city + city.country}
+                key={city.city + city.latitude.toString()}
                 onClick={() => setPickedCity(city)}
                 className="text-start py-1 hover:bg-slate-500 px-2"
               >
